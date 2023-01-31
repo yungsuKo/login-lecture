@@ -1,25 +1,19 @@
-const http = require('http');
-const app = http.createServer((req,res)=>{
-    res.writeHead(200, {"Content-Type":"text/html; charset=utf-8"})
-    if(req.url ==="/"){
-        res.end('여기에요')
-    }
-});
+"use strict";
+// 모듈
+const express = require('express');
+const app = express();
 
-app.listen(3001,()=>{
-    console.log("서버 가동")
+const PORT = 3001;
+
+// 라우팅
+const home = require('./routes/home');
+
+// 앱 세팅
+app.set('views', "./views");
+app.set('view engine', "ejs");
+
+app.use("/", home);
+
+app.listen(PORT, function(){
+    console.log('서버 가동')
 })
-
-
-
-
-// const express = require('express');
-// const app = express();
-
-// app.get("/",(req, res)=>{
-//     res.send("여기는 루트임.")
-// })
-
-// app.listen(3001, function(){
-//     console.log('서버 가동')
-// })
