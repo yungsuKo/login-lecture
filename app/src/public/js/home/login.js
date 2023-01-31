@@ -7,11 +7,23 @@ const loginBtn = document.querySelector("button");
 
 loginBtn.addEventListener('click',login);
 
-function login(event){
+async function login(event){
     event.preventDefault();
     const req = {
         id: id.value,
         password : password.value,
     }
-    console.log(req)
+    const {success, msg} = await (await fetch('/login',{
+        method: "post",
+        headers: {
+            "Content-Type" : "application/json"
+        },
+        body: JSON.stringify(req),
+    })).json();
+    if(success){
+        location.href="/"
+        alert(msg);
+    }else{
+        alert(msg);
+    }
 };
