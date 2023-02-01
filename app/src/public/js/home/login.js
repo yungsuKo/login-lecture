@@ -24,6 +24,7 @@ async function login(event){
         location.href="/"
         alert(msg);
     }else{
+        location.href="/login"
         alert(msg);
     }
 };
