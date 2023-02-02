@@ -13,6 +13,7 @@ async function login(event){
         id: id.value,
         password : password.value,
     }
+    console.log(req.id)
     const {success, msg} = await (await fetch('/login',{
         method: "post",
         headers: {
