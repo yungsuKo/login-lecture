@@ -32,7 +32,8 @@ class User{
     }
     register(){
         const client = this.body;
-        return UserStorage.save(client);
+        const response = UserStorage.save(client);
+        return response;
     }
 }
 

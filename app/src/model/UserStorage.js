@@ -36,7 +36,7 @@ class UserStorage {
         users.id.push(userInfo.id);
         users.username.push(userInfo.username);
         users.password.push(userInfo.password);
-        console.log(users)
+        return {success : true};
     }
 }
 
