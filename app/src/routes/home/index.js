@@ -6,6 +6,8 @@ const {output, process} = require('./home.controller')
 router.get("/", output.home)
 router.get("/login", output.login)
 router.post("/login", process.login)
+
 router.get("/register", output.register)
+router.post("/register", process.register)
 
 module.exports = router;
