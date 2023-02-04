@@ -33,7 +33,7 @@ async function register(event){
     if(result.success){
         location.href = "/login";
     }else{
-        alert(res.msg);
+        alert(result.msg);
     }
 
     console.log(result);
