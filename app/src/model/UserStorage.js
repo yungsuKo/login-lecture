@@ -1,16 +1,19 @@
 "use strict";
+const fs = require("fs").promises;
 
 class UserStorage {
-    // 클래스 안에서 변수를 선언할 떄는 const 필요없음
-    // static 정적 변수를 설정할 떄 사용함.
-    static #users = {
-        id : ["asdf", "qwer","zxv"],
-        password: ["123","234","345"],
-        username: ["111", "222", "333"]
+    static #getUserInfo(data, id){
+        const users = JSON.parse(data);
+        const idx = users.id.indexOf(id);
+        const userKeys = Object.keys(users); // => [id, password, name]
+        const userInfo = userKeys.reduce((newUser,info) =>{
+            newUser[info] = users[info][idx];
+            return newUser;
+        },{});
+        return userInfo;
     }
-
     static getUsers(...fields){
-        const users = this.#users;
+        // const users = this.#users;
         const newUsers = fields.reduce((newUsers, field) => {
             if(users.hasOwnProperty(field)){
                 newUsers[field] = users[field];
@@ -21,18 +24,15 @@ class UserStorage {
     }
 
     static getUserInfo(id){
-        const users = this.#users;
-        const idx = users.id.indexOf(id);
-        const userKeys = Object.keys(users); // => [id, password, name]
-        const userInfo = userKeys.reduce((newUser,info) =>{
-            newUser[info] = users[info][idx];
-            return newUser;
-        },{});
-        return userInfo;
+        return fs.readFile("./src/databases/tom/users.json")
+            .then((data) => {
+                return this.#getUserInfo(data, id);
+            })
+            .catch((err) => console.log(err))
     }
 
     static save(userInfo){
-        const users = this.#users;
+        // const users = this.#users;
         users.id.push(userInfo.id);
         users.username.push(userInfo.username);
         users.password.push(userInfo.password);

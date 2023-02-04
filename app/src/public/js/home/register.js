@@ -11,8 +11,6 @@ registerBtn.addEventListener('click',register);
 
 async function register(event){
     event.preventDefault();
-    if(!id) return alert("아이디를 입력해주세요!");
-    if (password !== passwordCheck) return alert("비밀번호가 일치하지 않음");
     
     const req = {
         username : username.value,
@@ -20,6 +18,10 @@ async function register(event){
         password : password.value,
         passwordCheck : passwordCheck.value,
     }
+    if(!req.id) return alert("아이디를 입력해주세요!");
+    if (req.password !== req.passwordCheck) {
+        return alert("비밀번호가 일치하지 않음");
+    };
     
     const result = await (await fetch('/register', {
         method : "post",
@@ -28,6 +30,11 @@ async function register(event){
         },
         body : JSON.stringify(req),
     })).json();
+    if(result.success){
+        location.href = "/login";
+    }else{
+        alert(res.msg);
+    }
 
     console.log(result);
 
