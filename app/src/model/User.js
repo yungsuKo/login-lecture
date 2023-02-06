@@ -28,7 +28,7 @@ class User{
         }catch (err){
             return {
                 success : false,
-                msg : `${err}`
+                err : `${err}`
             }
         }
         
@@ -41,7 +41,7 @@ class User{
         }catch(err){
             return {
                 success : false,
-                msg : err
+                err : err
             }
         }
     }
