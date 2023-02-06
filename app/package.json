@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "app-root-path": "^3.1.0",
     "body-parser": "^1.20.1",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.8",
@@ -7,7 +8,8 @@
     "fs": "^0.0.1-security",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "winston": "^3.8.2"
   },
   "name": "login-lecture",
   "description": "`인증과 인가` 누가, 언제, 어떻게 쓰고 있는가를 파악하기 위해 어떤 사이트에서 인증, 인가가 있음 인증과 인가는 API에서 가장 자주 구현되는 기능중 하나",
